@@ -81,7 +81,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
             <Navigation />
           </div>
         </div>
-        <div id="documentation-content">{children}</div>
+        {children}
       </div>
     </div>
   )

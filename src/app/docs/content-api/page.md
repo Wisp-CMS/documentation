@@ -6,7 +6,7 @@ nextjs:
     description: wisp RESTful Content API delivers published content to the world and can be accessed in a read-only manner by any client to render in a website, app, or other embedded media.
 ---
 
-wisp's REST API delivers published content to the world and can be accessed in a read-only manner by any client to render in a website, app, or other embedded media.
+The Content API delivers published content to the world and can be accessed in a read-only manner by any client to render in a website, app, or other embedded media. {% .lead %}
 
 ---
 

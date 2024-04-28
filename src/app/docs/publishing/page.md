@@ -1,241 +1,116 @@
 ---
-title: Content API
+title: Publishing
 nextjs:
   metadata:
-    title: Content API
-    description: wisp RESTful Content API delivers published content to the world and can be accessed in a read-only manner by any client to render in a website, app, or other embedded media.
+    title: Publishing
+    description: Publishing is made easier than ever with the wisp publishing interface. Create, edit and delete blog posts easily on the platform today.
 ---
 
-wisp's REST API delivers published content to the world and can be accessed in a read-only manner by any client to render in a website, app, or other embedded media.
-
----
-
-## URL
-
-```shell
-https://www.wisp.blog/api/v1/{blogId}
-```
-
-All read request will be made to your blog-specific endpoint. To get your blog ID and blog's endpoint, log in to wisp and visit the [Setup Page](https://www.wisp.blog/app/setup).
+Publishing is made easier than ever with the wisp publishing interface. Learn how to create, edit and delete blog posts easily on the platform. {% .lead %}
 
 ---
 
-## Working Example
-
-Try out a live example below. The endpoint fetches the blog posts for the [wisp cms blog](https://www.wisp.blog/blog).
+## Blog Posts Dashboard
 
 ```shell
-curl https://www.wisp.blog/api/v1/cluqyx1rl0000l5ds3f0vkfer/posts
+https://www.wisp.blog/app
 ```
 
----
+![Wisp Publishing App Dashboard](/images/docs/editor-interface.png)
 
-## Endpoints
+Once you've logged in to wisp, you will be brought to the dashboard where you can see all the blog posts on your blog. Here, you can click into any previous blog post to edit it, change its publishing status or even delete it.
 
-The Content API provides access to Posts & Tags. All endpoints return JSON and are considered stable.
+Of course, when you've first logged in, you will have to first create your first blog post to get started!
 
-| Verb | Path          | Method                         |
-| ---- | ------------- | ------------------------------ |
-| GET  | /posts/       | List blog posts                |
-| GET  | /posts/{slug} | Get specific blog post by slug |
-| GET  | /tags         | List tags for blog posts       |
-
----
-
-## Blog Posts
-
-Blog post are the primary content on a wisp blog.
-
-### List Blog Posts
+## Create Post Page
 
 ```shell
-GET https://www.wisp.blog/api/v1/{blogId}/posts
+https://www.wisp.blog/app/write
 ```
 
-Using the posts endpoint it is possible to get lists of posts filtered by various criteria. Blog posts are returned in reverse chronological order by published date.
+To create a new blog post, simply click on `Write` in the navigation bar to get started.
 
-#### Available Filters
+![New Wisp Blog](/images/docs/editor-interface-new.png)
 
-| Query | Remarks                                                                          | Default |
-| ----- | -------------------------------------------------------------------------------- | ------- |
-| limit | Number of post to fetch, accepts numbers & 'all' to fetch all posts              | 20      |
-| page  | Page number of blog post to fetch, starts from 1                                 | 1       |
-| tag   | Return only blog posts with the at least one of the tags, accepts multiple value | null    |
+Here, you will be greeted with our editor interface where you can get started by creating the title of your blog post in the title section.
 
-#### Sample Requests
+You may hit the `Enter` key when you are done to start writing the body of your blog post.
 
-_List all latest blog post using default page size of 20:_
+### wisp Editor
 
-```shell
-GET https://www.wisp.blog/api/v1/{blogId}/posts
-```
+The editor for the blog post content is extremely powerful built for the best publishing experience with support for Hotkeys, Markdown & Slash Command.
 
-_List the second page of blog post, with page size of 10, filtered by `announcement` tag:_
+### Hotkeys
 
-```shell
-GET https://www.wisp.blog/api/v1/{blogId}/posts?page=2&limit=10&tag=announcement
-```
+Familiar hotkeys from popular text editors like Ms Words, Google Docs, etc are available on the editor:
 
-_List all latest blog post with either `javascript` or `nextjs` tag:_
+| Element  | Hotkey (Mac/Window)          |
+| -------- | ---------------------------- |
+| Bold     | ⌘ + B / Ctrl + B             |
+| Italic   | ⌘ + I / Ctrl + I             |
+| Header 1 | ⌘ + Opt + 1 / Ctrl + Alt + 1 |
+| Header 2 | ⌘ + Opt + 2 / Ctrl + Alt + 2 |
+| Header 3 | ⌘ + Opt + 3 / Ctrl + Alt + 3 |
+| Header 4 | ⌘ + Opt + 4 / Ctrl + Alt + 4 |
 
-```shell
-GET https://www.wisp.blog/api/v1/{blogId}/posts?tag=javascript&tag=nextjs
-```
+### Markdown Support
 
-#### Sample Response
+For those familiar with Markdown command, you may make use of familiar syntax to quickly modify your content. Below is a cheatsheet for some of the syntax you may use:
 
-```json
-{
-  "posts": [
-    {
-      "id": "clv9qc8h000032ljsujj254rq",
-      "title": "When to Say No to Next.js: The Guide for Minimalist Web Developers",
-      "image": "https://imagedelivery.net/lLmNeOP7HXG0OqaG97wimw/cluqyx1rl0000l5ds3f0vkfer/68b4d481-56c2-43ee-85d1-77d9c98bee3e.png/public",
-      "description": "The appeal of Next.js is obvious - built-in server-side rendering, static site generation, file-based routing, and API routes promise a smooth, full-stack development experience. But at what cost?",
-      "slug": "when-to-say-no-to-nextjs-the-guide-for-minimalist-web-developers",
-      "authorId": "cluqywzs7000021a9m3aueeiq",
-      "teamId": "cluqyx1rl0000l5ds3f0vkfer",
-      "createdAt": "2024-04-21T16:15:34.885Z",
-      "updatedAt": "2024-04-21T16:15:34.885Z",
-      "published": true,
-      "tags": [
-        {
-          "id": "clv9qc1ik00012ljs7wb9c85z",
-          "name": "nextjs"
-        }
-      ]
-    },
-    {
-      "id": "clv9mc47c0001scsnebq69abr",
-      "title": "New Slash Command and Image Upload Upgrades",
-      "image": "https://imagedelivery.net/lLmNeOP7HXG0OqaG97wimw/cluqyx1rl0000l5ds3f0vkfer/87dfe381-d340-46c8-b4c6-a9517c2ac143.png/public",
-      "description": "We're excited to announce some slick new upgrades to the wisp editor experience! First up, we've added a handy slash command that gives you a Notion-like experience for quickly formatting content.",
-      "slug": "new-slash-command-and-image-upload-upgrades",
-      "authorId": "cluqywzs7000021a9m3aueeiq",
-      "teamId": "cluqyx1rl0000l5ds3f0vkfer",
-      "createdAt": "2024-04-21T14:23:30.887Z",
-      "updatedAt": "2024-04-21T14:23:30.887Z",
-      "published": true,
-      "tags": [
-        {
-          "id": "clv5860ec0001qcy3k91unqvy",
-          "name": "announcement"
-        }
-      ]
-    }
-  ],
-  "pagination": {
-    "page": 1,
-    "limit": 20,
-    "totalPages": 1,
-    "totalPosts": 32,
-    "nextPage": 1,
-    "prevPage": null
-  }
-}
-```
+| Element         | Syntax                     |
+| --------------- | -------------------------- |
+| Heading         | \# H1, \#\# H2, \#\#\# H3  |
+| Bold            | \*\*bold text\*\*          |
+| Italic          | \*italicized text\*        |
+| Strikethrough   | \~\~strikethrough text\~\~ |
+| Highlight       | \=\=highlighted text\=\=   |
+| Blockquote      | \> blockquote              |
+| Ordered List    | 1. First Item              |
+| Unordered List  | \- First Item              |
+| Code            | \`code\`                   |
+| Code Block      | \`\`\`                     |
+| Horizontal Rule | \-\-\-                     |
 
-### Get Blog Post by Slug
+### Slash Command
 
-```shell
-GET https://www.wisp.blog/api/v1/{blogId}/posts/{slug}
-```
+Slash command, inspired by Notion, is also available on the editor. Simply type `/` at the start of a new line to access the menu:
 
-Using the posts endpoint, you can get a single blog post by it's slug. This endpoint gives the full content of the blog post in HTML format, unlike the listing endpoint which only return a subset of the blog post object.
+![Accessing Slash Command](/images/docs/editor-slash-command.png)
 
-#### Sample Request
+### Other Image Handling
 
-Get blog post with the slug `introducing-wisp`:
+Besides adding image through the slash command, you can also drag-and-drop images into the editor or copy-and-paste them from another page - no more fumbling with clunky "Media Library"!
 
-```shell
-GET https://www.wisp.blog/api/v1/{blogId}/posts/introducing-wisp
-```
+All images uploaded onto the editor is automatically uploaded onto a CDN server to be served on edge nodes globally. This means shorter loading time for your users!
 
-#### Sample Response
+### Publishing Settings
 
-```json
-{
-  "post": {
-    "id": "cluqzhjn70005ihniuhbpkxa8",
-    "title": "Introducing wisp: A Headless CMS for Indie Hackers & Startups",
-    "image": "https://imagedelivery.net/lLmNeOP7HXG0OqaG97wimw/cluqyx1rl0000l5ds3f0vkfer/a8ba0df1-942a-42d0-9150-976966459c4f.png/public",
-    "content": "<img src=\"https://imagedelivery.net/lLmNeOP7HXG0OqaG97wimw/cluqyx1rl0000l5ds3f0vkfer/a8ba0df1-942a-42d0-9150-976966459c4f.png/public\"><h2>Blogs on Next.js SUCKS!!!</h2><p>Let's be real here, managing a blog on your Next.js website can be a total pain in the ass, especially if you're an indie hacker or a bootstrapped startup. I've been there, done that, and I've got the battle scars to prove it.</p><p>Working with MDX files was supposed to be a breeze, but it quickly turned into a nightmare. Generating sitemaps, creating blog lists, and handling image uploads and hosting became tasks that I dreaded.</p>(truncated)",
-    "description": "Managing a blog on your Next.js website sucks. I've been there, done that, and I've got the battle scars to prove it. That's why I set out to build wisp. A headless CMS with kickass editor, image CDN and everything you need in a blog.",
-    "slug": "introducing-wisp-a-headless-cms-for-indie-hackers-and-startups",
-    "authorId": "cluqywzs7000021a9m3aueeiq",
-    "teamId": "cluqyx1rl0000l5ds3f0vkfer",
-    "createdAt": "2024-04-08T13:24:01.843Z",
-    "updatedAt": "2024-04-18T12:35:49.778Z",
-    "published": true,
-    "tags": [
-      {
-        "id": "clv5860ec0001qcy3k91unqvy",
-        "name": "announcement"
-      }
-    ]
-  }
-}
-```
+Once you have populated the title and content of the blog post, click on the `Publish`/`Update` button to save and/or publish the post. This will open the publishing settings slide-out on the right.
 
----
+![Publishing Settings](/images/docs/editor-publishing-settings.png)
 
-## Tags
+#### Featured Image
 
-Tags are labels you can give to blog posts on wisp. You can use tags to categorize and filter blog post using the `filter` query on the list blog post endpoint.
+If you've uploaded any images on the blog post, it will automatically be available for selection here. Select the image you would like to use as the featured image for this blog post. A blue border will highlight the selected image.
 
-### List Tags
+#### Slug
 
-```shell
-GET https://www.wisp.blog/api/v1/{blogId}/tags
-```
+A slug will be automatically generated from the title of your blog post and it is used to reference and retrieve this blog post later. You may edit the slug if you like.
 
-Using the tags endpoint, you can list all the tags available on your site. This can be useful if you are creating a sitemap or a taxonomy list for your user.
+#### Description
 
-#### Available Filters
+A short description can be provided for the blog post. This is commonly used to display a subtitle or short synopsis of the article. This short description will be made available when listing blog post via the [Content API](/docs/content-api), unlike the full content. 
 
-| Query | Remarks                                                            | Default |
-| ----- | ------------------------------------------------------------------ | ------- |
-| limit | Number of tags to fetch, accepts numbers & 'all' to fetch all tags | 20      |
-| page  | Page number of tags to fetch, starts from 1                        | 1       |
+#### Tags
 
-#### Sample Request
+Tags can be added to the blog post to organize and categorize the posts. This is commonly used to allow users to discover similar articles.
 
-Get all tags on the blog:
+You may select from existing tags on the blog. Selected tags will be highlighted blue.
 
-```shell
-GET https://www.wisp.blog/api/v1/{blogId}/tags
-```
+To create a new tag, simply give the tag a name and click on `Create New` to add a new tag.
 
-#### Sample Response
+If you would like to delete tags that are created accidentally or are obsolete, you may head over to the Tags Manager page at [https://www.wisp.blog/app/manage-tags](https://www.wisp.blog/app/manage-tags)
 
-```json
-{
-  "tags": [
-    {
-      "id": "clv5860ec0001qcy3k91unqvy",
-      "name": "announcement",
-      "description": null,
-      "teamId": "cluqyx1rl0000l5ds3f0vkfer"
-    },
-    {
-      "id": "clv588snu000fqcy3zyusi5ol",
-      "name": "blogging",
-      "description": null,
-      "teamId": "cluqyx1rl0000l5ds3f0vkfer"
-    },
-    {
-      "id": "clv586u4y0006qcy3k30yli5z",
-      "name": "growth",
-      "description": null,
-      "teamId": "cluqyx1rl0000l5ds3f0vkfer"
-    }
-  ],
-  "pagination": {
-    "page": 1,
-    "totalPages": 1,
-    "totalTags": 6,
-    "nextPage": null,
-    "prevPage": null
-  }
-}
-```
+#### Publish
+
+Finally, you may choose if you would like to publish the blog post immediately or save it as draft post first. Toggle the publish setting by clicking on the toggle. Remember, blue means it will be published.

@@ -1,5 +1,5 @@
 ---
-title: Content API
+title: Core Concept Overview
 nextjs:
   metadata:
     title: Overview

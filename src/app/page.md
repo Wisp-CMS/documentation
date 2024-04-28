@@ -41,10 +41,10 @@ Let's get you started with integrating wisp onto your site in the next 30 mins! 
 
 {% quick-link title="Sign Up" icon="installation" href="https://wisp.blog/auth/signup" description="Sign up for an account on wisp to access the publishing interface and get the team ID for integration." /%}
 
-{% quick-link title="Core Concepts" icon="presets" href="/" description="Learn how blog posts on wisp works and how they get served on your site." /%}
+{% quick-link title="Core Concepts" icon="presets" href="/docs/overview" description="Learn how blog posts on wisp works and how they get served on your site." /%}
 
-{% quick-link title="Content API" icon="plugins" href="/" description="Learn how to access your blog posts via our REST API." /%}
+{% quick-link title="Content API" icon="plugins" href="/docs/content-api" description="Learn how to access your blog posts via our REST API." /%}
 
-{% quick-link title="JS SDK" icon="theming" href="/" description="Learn how you can use our Javascript SDK to integrate wisp into your Next.js, Vite, Svelte, etc blog." /%}
+{% quick-link title="JS SDK" icon="theming" href="/docs/js-sdk" description="Learn how you can use our Javascript SDK to integrate wisp into your Next.js, Vite, Svelte, etc blog." /%}
 
 {% /quick-links %}

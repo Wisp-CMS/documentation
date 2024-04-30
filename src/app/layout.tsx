@@ -29,10 +29,10 @@ const lexend = localFont({
 export const metadata: Metadata = {
   title: {
     template: '%s - Docs',
-    default: 'CacheAdvance - Never miss the cache again.',
+    default: 'Wisp Blog - Minimalist Headless Blog for Next.js 14',
   },
   description:
-    'Cache every single thing your app could ever do ahead of time, so your code never even has to run at all.',
+    'Wisp is a CMS for blogs that just works. Image CDN, SEO & blog search for your Next.js app out of the box.',
 }
 
 export default function RootLayout({
